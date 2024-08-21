@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MouseKeyHook" Version="5.7.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="resources\layer_0.png" />
+      <Resource Include="resources\layer_0.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_1.png" />
+      <Resource Include="resources\layer_1.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_2.png" />
+      <Resource Include="resources\layer_2.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_3.png" />
+      <Resource Include="resources\layer_3.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_4.png" />
+      <Resource Include="resources\layer_4.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_5.png" />
+      <Resource Include="resources\layer_5.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_6.png" />
+      <Resource Include="resources\layer_6.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="resources\layer_7.png" />
+      <Resource Include="resources\layer_7.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
+    </ItemGroup>
+
+</Project>
