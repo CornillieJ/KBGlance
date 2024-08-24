@@ -9,6 +9,7 @@
         WindowStyle="None" WindowStartupLocation="Manual"
         AllowsTransparency="True" Background="Transparent"
         KeyDown="MainWindow_OnKeyDown" KeyUp="MainWindow_OnKeyUp"
+        ShowInTaskbar="False"
         >
     <Grid>
         <Image x:Name="imgLayer" Source="resources/layer_0.png"/>
