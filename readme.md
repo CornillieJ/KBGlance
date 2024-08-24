@@ -1,6 +1,6 @@
-# **ZMK Keymap Visualizer**
+# **KeyBoard-Glance**
 
-ZMK Keymap Visualizer is a WPF application designed to help you learn and visualize your custom ZMK keymap. The app listens for specific key combinations (combo keys) that you define and displays the corresponding keymap layout image for the active layer. This is particularly useful for users who frequently switch between different layers in their keymap and want a quick reference to their current layout.
+ KB-Glance is a WPF application designed to help you learn and visualize your custom ZMK keymap. The app listens for specific key combinations (combo keys) that you define and displays the corresponding keymap layout image for the active layer. This is particularly useful for users who frequently switch between different layers in their keymap and want a quick reference to their current layout.
 
 ## **Features**
 
@@ -17,7 +17,7 @@ ZMK Keymap Visualizer is a WPF application designed to help you learn and visual
 
 1. **Download the Release**
 
-   - Download the latest version of the app from the [Releases](https://github.com/yourusername/zmk-keymap-visualizer/releases) section.
+   - Download the latest version of the app from the [Releases](https://github.com/CornillieJ/KBGlance/releases) section.
    - Extract the ZIP file to your preferred location.
 
 2. **Prepare the Keymap Images**
