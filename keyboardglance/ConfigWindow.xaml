@@ -22,22 +22,22 @@
                 <Label Content="Your preferred key combinations:" Foreground="White" HorizontalAlignment="Center"/>
                 <GroupBox HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox Content="L SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="L ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="L CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="L GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="L SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                        <StackPanel x:Name="stkLeftKeys" Orientation="Vertical">
+                            <CheckBox x:Name="chkLshift" Content="L SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkLalt" Content="L ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkLctrl" Content="L CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkLgui" Content="L GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical">
-                            <CheckBox Content="R SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="R ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="R CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="R GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
-                            <CheckBox Content="R SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                        <StackPanel x:Name="stkRightKeys" Orientation="Vertical">
+                            <CheckBox x:Name="chkRshift" Content="R SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkRalt" Content="R ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkRctrl" Content="R CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox x:Name="chkRgui" Content="R GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
                         </StackPanel>
                     </StackPanel>
                 </GroupBox>
+                <Label Content="Combine these with the number keys in your keymap"  Margin="0,5,0,0" Padding="0" FontSize="14" VerticalContentAlignment="Bottom"  Foreground="white"/>
+                <Label Content="for each layer" Padding="0" VerticalContentAlignment="Top" FontSize="14"  Foreground="white"/>
             </StackPanel>
         </StackPanel>
         </GroupBox>

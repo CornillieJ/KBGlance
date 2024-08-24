@@ -35,16 +35,30 @@ public partial class MainWindow : Window
         {Key.D6,new Uri("resources/layer_6.png",UriKind.Relative)},
         {Key.D7,new Uri("resources/layer_7.png",UriKind.Relative)},
     };
+
+    private Dictionary<string, Key> _comboKeyMap = new()
+    {
+        {"LALT", Key.LeftAlt},
+        {"LSHIFT", Key.LeftShift},
+        {"LCTRL", Key.LeftCtrl},
+        {"LGUI", Key.LWin}, 
+        {"RALT", Key.RightAlt},
+        {"RSHIFT", Key.RightShift},
+        {"RCTRL", Key.RightCtrl},
+        {"RGUI", Key.RWin}
+    };
+
     private Dictionary<Key,bool> _pressedKeys = new(); 
     private IKeyboardMouseEvents _globalHook;
     private int _windowDelay=100;
     private int _currentDelay;
     private CancellationTokenSource _cancellationTokenSource = new();
 
-    public MainWindow()
+    public MainWindow(string keyCombo)
     {
         InitializeComponent();
         InitializeNotifyIcon();
+        AssignComboKeys(keyCombo);
         HookKeyboard();
         HideWindow(_cancellationTokenSource.Token);
         Left = 10;
@@ -105,6 +119,13 @@ public partial class MainWindow : Window
         MainWindow_OnKeyUp(sender,newE);
     }
 
+    private void AssignComboKeys(string comboKeyString)
+    {
+        string[] combokeys = comboKeyString.Split(",");
+        bool isValid = combokeys.All(k => _comboKeyMap.ContainsKey(k));
+        if (!isValid) throw new ArgumentException("Invalid key");
+        _keyCombo = combokeys.Select(k => _comboKeyMap[k]).ToList();
+    }
     private void ShowWindow(Uri layerUri)
     {
         _cancellationTokenSource.Cancel();
