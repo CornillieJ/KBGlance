@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:keyboardglance"
         mc:Ignorable="d"
-        Title="ConfigWindow" Height="100" Width="400"
+        Title="ConfigWindow" Height="300" Width="400"
         Background="Transparent" Foreground="White" AllowsTransparency="True" WindowStyle="None"
         >
     <Grid>
@@ -19,6 +19,25 @@
                     <Button x:Name="btnClose" Content="Close" Width="100" Background="DarkSlateGray" Foreground="White"
                             Margin="5,0" Click="BtnClose_OnClick"/>
                 </StackPanel>
+                <Label Content="Your preferred key combinations:" Foreground="White" HorizontalAlignment="Center"/>
+                <GroupBox HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox Content="L SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="L ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="L CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="L GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="L SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox Content="R SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="R ALT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="R CTRL" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="R GUI" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                            <CheckBox Content="R SHIFT" Foreground="White" Margin="5" VerticalContentAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
             </StackPanel>
         </StackPanel>
         </GroupBox>
