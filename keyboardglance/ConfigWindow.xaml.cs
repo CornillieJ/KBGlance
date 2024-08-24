@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net;
 using System.Text.Json.Nodes;
 using System.Windows;
@@ -39,6 +40,10 @@ public partial class ConfigWindow : Window
         Close();
     }
 
+    private void BtnImages_OnClick_OnClick(object sender, RoutedEventArgs e)
+    {
+        Process.Start("explorer.exe" , @"resources");
+    }
     private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
     {
         DragMove();
@@ -79,4 +84,5 @@ public partial class ConfigWindow : Window
         var json = File.ReadAllText(filePath);
         return JsonConvert.DeserializeObject<T>(json);
     }
+
 }
