@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:keyboardglance"
         mc:Ignorable="d"
-        Title="ConfigWindow" Height="300" Width="400"
+        Title="ConfigWindow" Height="350" Width="400"
         Background="Transparent" Foreground="White" AllowsTransparency="True" WindowStyle="None"
         >
     <Grid>
