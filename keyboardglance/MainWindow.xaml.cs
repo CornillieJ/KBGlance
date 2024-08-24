@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,7 +20,9 @@ namespace keyboardglance;
 /// </summary>  f   
 public partial class MainWindow : Window
 {
-    private const double StartingOpacity = 0.8;
+    private const double StartingOpacity = 1;
+    private NotifyIcon _notifyIcon;
+    private const string IconLocation = "resources/notifyicon.ico"; //<a href="https://www.flaticon.com/free-icons/keyboard-and-mouse" title="Keyboard and mouse icons">Keyboard and mouse icons created by Muhammad Atif - Flaticon</a> 
     private List<Key> _keyCombo = [Key.RightAlt,Key.RightCtrl];
     private Dictionary<Key, Uri> _layerKeyMap = new ()
     {
@@ -41,10 +44,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        InitializeNotifyIcon();
         HookKeyboard();
         HideWindow(_cancellationTokenSource.Token);
         Left = 10;
         Top = 10;
+        _notifyIcon.ShowBalloonTip(1000, "Minimized to system tray", "The application is still running in the background.", ToolTipIcon.Info);
     }
     
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
@@ -135,5 +140,24 @@ public partial class MainWindow : Window
         Hide();
         Opacity = StartingOpacity;
     }
+    private void InitializeNotifyIcon()
+    {
+        _notifyIcon = new NotifyIcon();
+        _notifyIcon.Icon = new Icon(IconLocation);
+        _notifyIcon.Visible = true;
+        _notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
+        var contextMenu = new ContextMenuStrip();
+        contextMenu.Items.Add("Config", null, (s, e) =>
+        {
+            (new ConfigWindow()).Show();
+            Close();
+        });
+        contextMenu.Items.Add("Exit", null, (s, e) => Close());
+        _notifyIcon.ContextMenuStrip = contextMenu;
+    }
 
+    private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
+    {
+        Close();
+    }
 }
