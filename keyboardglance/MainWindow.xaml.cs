@@ -54,18 +54,19 @@ public partial class MainWindow : Window
     private int _currentDelay;
     private CancellationTokenSource _cancellationTokenSource = new();
 
-    public MainWindow(string keyCombo)
+    public MainWindow(string keyCombo,(double,double) size, (double,double) location)
     {
         InitializeComponent();
         InitializeNotifyIcon();
         AssignComboKeys(keyCombo);
         HookKeyboard();
         HideWindow(_cancellationTokenSource.Token);
-        Left = 10;
-        Top = 10;
+        AdjustPlacement(size, location);
         _notifyIcon.ShowBalloonTip(1000, "Minimized to system tray", "The application is still running in the background.", ToolTipIcon.Info);
     }
+
     
+
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
     {
         _pressedKeys.TryAdd(e.Key,true);
@@ -98,6 +99,10 @@ public partial class MainWindow : Window
         _globalHook.KeyUp -= GlobalHook_KeyUp;
         _globalHook.Dispose();
         base.OnClosed(e);
+    }
+    private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
+    {
+        Close();
     }
     private void HookKeyboard()
     {
@@ -177,8 +182,20 @@ public partial class MainWindow : Window
         _notifyIcon.ContextMenuStrip = contextMenu;
     }
 
-    private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
+
+    private void AdjustPlacement((double, double) size, (double, double) location)
     {
-        Close();
+        Left = 10;
+        Top = 10;
+        if (size.Item1 != 0 && size.Item2 != 0)
+        {
+            Width = size.Item1;
+            Height = size.Item2;
+        }
+        if (location.Item1 != 0 && location.Item2 != 0)
+        {
+            Left = location.Item1;
+            Top = location.Item2;
+        }
     }
 }
