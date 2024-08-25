@@ -53,8 +53,8 @@ public partial class ConfigWindow : Window
     {
         PlacementWindow placement = new(200, 200);
         placement.ShowDialog();
-        _size.Item1 = placement.Height;
-        _size.Item2 = placement.Width;
+        _size.Item1 = placement.Width;
+        _size.Item2 = placement.Height;
         _location.Item1 = placement.Left;
         _location.Item2 = placement.Top;
     }
