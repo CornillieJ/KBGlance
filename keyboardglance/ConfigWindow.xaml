@@ -19,8 +19,10 @@
                     <Button x:Name="btnClose" Content="Close" Width="100" Background="DarkSlateGray" Foreground="White"
                             Margin="5,0" Click="BtnClose_OnClick"/>
                 </StackPanel>
+                <Button x:Name="btnPlacement" Content="Choose popup size and location" Width="250" Padding="0" Background="DarkSlateGray" Foreground="White" 
+                        Margin="0,5" Click="BtnPlacement_OnClick"/>
                 <Button x:Name="btnImages" Content="Open image folder" Width="200" Padding="0" Background="DarkSlateGray" Foreground="White" 
-                        Margin="0,5,0,0" Click="BtnImages_OnClick_OnClick"/>
+                        Margin="0,5,0,0" Click="BtnImages_OnClick"/>
                 <Label Content="Your preferred key combinations:" Foreground="White" HorizontalAlignment="Center"/>
                 <GroupBox HorizontalAlignment="Center">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
