@@ -36,7 +36,7 @@
 3. **Configure Combo Keys in ZMK**
 
    - To use this application effectively, you need to configure combo keys in your ZMK keymap that trigger specific layers.
-   - **Recommended Setup:** Map your left pinky and index finger keys to trigger a combination of `RALT + RCTRL + <layer_number>`.
+   - **Recommended Setup:** Map a combo for your left pinky and index finger keys to trigger a combination of `RALT + RCTRL + <layer_number>`.
    - This should be defined on **each layer** of your ZMK keymap, with each layer having a unique number key combination (e.g., `RALT + RCTRL + 0` for layer 0, `RALT + RCTRL + 1` for layer 1, etc.).  use: https://zmk.dev/docs/keymaps/combos
    
    - Example configuration in your ZMK keymap:
@@ -78,6 +78,7 @@
 - **Manually Adding Images:**
   - Place your keymap layout images in the `Resources` folder.
   - Ensure each image is correctly named (`layer_0.png`, `layer_1.png`, etc.) to match your layer numbers.
+  - You can also change the app icon in the system tray by overwriting the notifyicon.ico file
 
 ### **Configuring Combo Keys**
 
@@ -91,12 +92,8 @@
 - The app will automatically detect the right combo and change the displayed image to reflect the keymap for the active layer.
 
 ## **Future Enhancements**
-
-- **Allow choosing location and size of the popups:**
-  - In the future, I plan to add functionality to allow customizing the popups, an easy task but I'd need to actually take time to update it 
-
 - **Image Uploading:**
-  -I would like to streamline the image process and then worki on an easy-to-use image uploading feature that will automatically rename and place images in the correct directory.
+  -I would like to streamline the image process and then work on an easy-to-use image uploading feature that will automatically rename and place images in the correct directory.
 
 ## **Contributing**
 
