@@ -34,6 +34,8 @@ public partial class MainWindow : Window
         {Key.D5,new Uri("resources/layer_5.png",UriKind.Relative)},
         {Key.D6,new Uri("resources/layer_6.png",UriKind.Relative)},
         {Key.D7,new Uri("resources/layer_7.png",UriKind.Relative)},
+        {Key.D8,new Uri("resources/layer_8.png",UriKind.Relative)},
+        {Key.D9,new Uri("resources/layer_9.png",UriKind.Relative)},
     };
 
     private Dictionary<string, Key> _comboKeyMap = new()
