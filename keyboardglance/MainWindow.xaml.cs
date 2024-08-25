@@ -177,6 +177,7 @@ public partial class MainWindow : Window
     {
         _notifyIcon = new NotifyIcon();
         _notifyIcon.Icon = new Icon(IconLocation);
+        _notifyIcon.Text = "KB Glance";
         _notifyIcon.Visible = true;
         _notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
         var contextMenu = new ContextMenuStrip();
