@@ -103,7 +103,8 @@ public partial class MainWindow : Window
     }
     private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
     {
-        Close();
+        (new ConfigWindow()).Show();
+        Close(); 
     }
     
 
