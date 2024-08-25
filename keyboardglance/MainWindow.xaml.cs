@@ -65,8 +65,7 @@ public partial class MainWindow : Window
         _notifyIcon.ShowBalloonTip(1000, "Minimized to system tray", "The application is still running in the background.", ToolTipIcon.Info);
     }
 
-    
-
+    #region Event handlers
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
     {
         _pressedKeys.TryAdd(e.Key,true);
@@ -104,6 +103,10 @@ public partial class MainWindow : Window
     {
         Close();
     }
+    
+
+    #endregion
+    #region Keyboard hook methods
     private void HookKeyboard()
     {
         _globalHook = Hook.GlobalEvents();
@@ -123,6 +126,9 @@ public partial class MainWindow : Window
         KeyEventArgs newE = new KeyEventArgs(Keyboard.PrimaryDevice, PresentationSource.FromVisual(this), 0, key);
         MainWindow_OnKeyUp(sender,newE);
     }
+    
+
+    #endregion
 
     private void AssignComboKeys(string comboKeyString)
     {
@@ -144,14 +150,12 @@ public partial class MainWindow : Window
         Focusable = false;
         _cancellationTokenSource = new CancellationTokenSource();
     }
-
     private bool IsComboPressed()
     {
         bool isModifierPressed = _keyCombo.All(k => _pressedKeys.ContainsKey(k));
         bool isNumberPressed = _layerKeyMap.Any(pair => _pressedKeys.ContainsKey(pair.Key));
         return isModifierPressed && isNumberPressed;
     }
-
     private async void HideWindow(CancellationToken token)
     {
         while (_currentDelay < _windowDelay && !token.IsCancellationRequested)
@@ -181,8 +185,6 @@ public partial class MainWindow : Window
         contextMenu.Items.Add("Exit", null, (s, e) => Close());
         _notifyIcon.ContextMenuStrip = contextMenu;
     }
-
-
     private void AdjustPlacement((double, double) size, (double, double) location)
     {
         Left = 10;
