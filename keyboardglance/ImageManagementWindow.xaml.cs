@@ -137,7 +137,7 @@ public partial class ImageManagementWindow : Window
             Directory.CreateDirectory(ResourcesPath);
 
         //filter for images
-        string[] supportedTypes = { ".png", ".jpg", ".jpeg", ".bmp", ".gif" };
+        string[] supportedTypes = { ".png", ".jpg", ".jpeg", ".bmp", ".gif"};
         return Directory.GetFiles(ResourcesPath)
             .Where(file => supportedTypes.Contains(Path.GetExtension(file).ToLower()))
             .ToList();
