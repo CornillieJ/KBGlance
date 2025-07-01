@@ -13,7 +13,7 @@
             <Grid>
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Vertical">
-                        <Label Foreground="white">Current images:</Label>
+                        <Label Foreground="white">Current Layers:</Label>
                         <ScrollViewer Height="500">
                             <StackPanel x:Name="stkImages">
                             </StackPanel>
