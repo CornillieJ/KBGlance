@@ -14,7 +14,7 @@
                 <StackPanel VerticalAlignment="Center">
                     <StackPanel Orientation="Vertical">
                         <Label Foreground="white">Current images:</Label>
-                        <ScrollViewer>
+                        <ScrollViewer Height="500">
                             <StackPanel x:Name="stkImages">
                             </StackPanel>
                         </ScrollViewer>
