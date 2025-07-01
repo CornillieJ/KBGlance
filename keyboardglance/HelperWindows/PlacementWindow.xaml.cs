@@ -19,7 +19,8 @@ public partial class PlacementWindow : Window
 
     private void PlacementWindow_OnMouseDown(object sender, MouseButtonEventArgs e)
     {
-        DragMove();
+        if(e.ChangedButton == MouseButton.Left)
+            DragMove();
     }
 
     private void BtnConfirm_OnClick(object sender, RoutedEventArgs e)

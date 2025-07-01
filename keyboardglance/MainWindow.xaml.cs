@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Gma.System.MouseKeyHook;
-using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using KeyEventArgs=System.Windows.Input.KeyEventArgs;
 
 namespace keyboardglance;
 
@@ -22,41 +22,35 @@ public partial class MainWindow : Window
 {
     private const double StartingOpacity = 1;
     private NotifyIcon _notifyIcon;
-    private const string IconLocation = "resources/notifyicon.ico"; //<a href="https://www.flaticon.com/free-icons/keyboard-and-mouse" title="Keyboard and mouse icons">Keyboard and mouse icons created by Muhammad Atif - Flaticon</a> 
-    private List<Key> _keyCombo = [Key.RightAlt,Key.RightCtrl];
-    private Dictionary<Key, Uri> _layerKeyMap = new ()
+    private const string IconLocation = "resources/notifyicon.ico";//<a href="https://www.flaticon.com/free-icons/keyboard-and-mouse" title="Keyboard and mouse icons">Keyboard and mouse icons created by Muhammad Atif - Flaticon</a> 
+    private List<Key> _keyCombo = [Key.RightAlt, Key.RightCtrl];
+    public static Dictionary<int, string> Layers { get; set; }
+
+    private Dictionary<Key, int> _layerKeyMap = new()
     {
-        {Key.D0,new Uri("resources/layer_0.png",UriKind.Relative)},
-        {Key.D1,new Uri("resources/layer_1.png",UriKind.Relative)},
-        {Key.D2,new Uri("resources/layer_2.png",UriKind.Relative)},
-        {Key.D3,new Uri("resources/layer_3.png",UriKind.Relative)},
-        {Key.D4,new Uri("resources/layer_4.png",UriKind.Relative)},
-        {Key.D5,new Uri("resources/layer_5.png",UriKind.Relative)},
-        {Key.D6,new Uri("resources/layer_6.png",UriKind.Relative)},
-        {Key.D7,new Uri("resources/layer_7.png",UriKind.Relative)},
-        {Key.D8,new Uri("resources/layer_8.png",UriKind.Relative)},
-        {Key.D9,new Uri("resources/layer_9.png",UriKind.Relative)},
+        { Key.D0, 0 }, { Key.D1, 1 }, { Key.D2, 2 }, { Key.D3, 3 }, { Key.D4, 4 },
+        { Key.D5, 5 }, { Key.D6, 6 }, { Key.D7, 7 }, { Key.D8, 8 }, { Key.D9, 9 },
     };
 
     private Dictionary<string, Key> _comboKeyMap = new()
     {
-        {"LALT", Key.LeftAlt},
-        {"LSHIFT", Key.LeftShift},
-        {"LCTRL", Key.LeftCtrl},
-        {"LGUI", Key.LWin}, 
-        {"RALT", Key.RightAlt},
-        {"RSHIFT", Key.RightShift},
-        {"RCTRL", Key.RightCtrl},
-        {"RGUI", Key.RWin}
+        { "LALT", Key.LeftAlt },
+        { "LSHIFT", Key.LeftShift },
+        { "LCTRL", Key.LeftCtrl },
+        { "LGUI", Key.LWin },
+        { "RALT", Key.RightAlt },
+        { "RSHIFT", Key.RightShift },
+        { "RCTRL", Key.RightCtrl },
+        { "RGUI", Key.RWin }
     };
 
-    private Dictionary<Key,bool> _pressedKeys = new(); 
+    private Dictionary<Key, bool> _pressedKeys = new();
     private IKeyboardMouseEvents _globalHook;
-    private int _windowDelay=100;
+    private int _windowDelay = 100;
     private int _currentDelay;
     private CancellationTokenSource _cancellationTokenSource = new();
 
-    public MainWindow(string keyCombo,(double,double) size, (double,double) location)
+    public MainWindow(string keyCombo, (double, double) size, (double, double) location)
     {
         InitializeComponent();
         InitializeNotifyIcon();
@@ -65,15 +59,19 @@ public partial class MainWindow : Window
         HideWindow(_cancellationTokenSource.Token);
         AdjustPlacement(size, location);
         _notifyIcon.ShowBalloonTip(1000, "Minimized to system tray", "The application is still running in the background.", ToolTipIcon.Info);
+
+        if (Layers?.Count > 0)
+            return;
+        Layers = ImageManagementWindow.InitializeLayers();
     }
 
     #region Event handlers
     private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
     {
-        _pressedKeys.TryAdd(e.Key,true);
-        if(WindowState == WindowState.Normal) return;
+        _pressedKeys.TryAdd(e.Key, true);
+        if (WindowState == WindowState.Normal) return;
         if (!IsComboPressed()) return;
-        Uri layerUri = GetLayerUri()?? throw new InvalidOperationException();
+        Uri layerUri = GetLayerUri() ?? throw new InvalidOperationException();
         ShowWindow(layerUri);
     }
 
@@ -81,9 +79,9 @@ public partial class MainWindow : Window
     {
         foreach (Key key in _pressedKeys.Keys)
         {
-            if (_layerKeyMap.TryGetValue(key, out Uri? result)) return result;
+            if (_layerKeyMap.TryGetValue(key, out int result))
+                return new Uri(Layers[result], UriKind.RelativeOrAbsolute);
         }
-
         return null;
     }
 
@@ -91,7 +89,7 @@ public partial class MainWindow : Window
     {
         if (!_pressedKeys.ContainsKey(e.Key)) return;
         _pressedKeys.Remove(e.Key);
-        if(IsComboPressed()) return;
+        if (IsComboPressed()) return;
         HideWindow(_cancellationTokenSource.Token);
     }
     protected override void OnClosed(EventArgs e)
@@ -104,10 +102,8 @@ public partial class MainWindow : Window
     private void NotifyIcon_DoubleClick(object? sender, EventArgs e)
     {
         (new ConfigWindow()).Show();
-        Close(); 
+        Close();
     }
-    
-
     #endregion
     #region Keyboard hook methods
     private void HookKeyboard()
@@ -120,17 +116,15 @@ public partial class MainWindow : Window
     {
         Key key = KeyInterop.KeyFromVirtualKey(e.KeyValue);
         KeyEventArgs newE = new KeyEventArgs(Keyboard.PrimaryDevice, PresentationSource.FromVisual(this), 0, key);
-        MainWindow_OnKeyDown(sender,newE);
+        MainWindow_OnKeyDown(sender, newE);
     }
 
     private void GlobalHook_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
     {
         Key key = KeyInterop.KeyFromVirtualKey(e.KeyValue);
         KeyEventArgs newE = new KeyEventArgs(Keyboard.PrimaryDevice, PresentationSource.FromVisual(this), 0, key);
-        MainWindow_OnKeyUp(sender,newE);
+        MainWindow_OnKeyUp(sender, newE);
     }
-    
-
     #endregion
 
     private void AssignComboKeys(string comboKeyString)
@@ -143,7 +137,15 @@ public partial class MainWindow : Window
     private void ShowWindow(Uri layerUri)
     {
         _cancellationTokenSource.Cancel();
-        imgLayer.Source = new BitmapImage(layerUri);
+
+        var bitmapImage = new BitmapImage();
+        bitmapImage.BeginInit();
+        bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+        bitmapImage.UriSource = layerUri;
+        bitmapImage.EndInit();
+        imgLayer.Source = bitmapImage;
+
+
         Opacity = StartingOpacity;
         _currentDelay = 0;
         Show();
@@ -151,6 +153,7 @@ public partial class MainWindow : Window
         Topmost = true;
         Activate();
         Focusable = false;
+
         _cancellationTokenSource = new CancellationTokenSource();
     }
     private bool IsComboPressed()
@@ -181,8 +184,7 @@ public partial class MainWindow : Window
         _notifyIcon.Visible = true;
         _notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
         var contextMenu = new ContextMenuStrip();
-        contextMenu.Items.Add("Config", null, (s, e) =>
-        {
+        contextMenu.Items.Add("Config", null, (s, e) => {
             (new ConfigWindow()).Show();
             Close();
         });

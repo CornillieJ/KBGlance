@@ -47,6 +47,10 @@
       <Resource Include="resources\layer_7.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
+      <None Remove="resources\splash.png" />
+      <Resource Include="resources\splash.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

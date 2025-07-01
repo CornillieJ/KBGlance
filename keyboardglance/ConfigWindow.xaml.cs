@@ -58,13 +58,16 @@ public partial class ConfigWindow : Window
         _location.Item1 = placement.Left;
         _location.Item2 = placement.Top;
     }
-    private void BtnImages_OnClick(object sender, RoutedEventArgs e)
+
+    private void BtnManageImages_OnClick(object sender, RoutedEventArgs e)
     {
-        Process.Start("explorer.exe" , @"resources");
+        var imageManagementWindow = new ImageManagementWindow();
+        imageManagementWindow.ShowDialog();
     }
     private void UIElement_OnMouseDown(object sender, MouseButtonEventArgs e)
     {
-        DragMove();
+        if(e.ChangedButton == MouseButton.Left)
+            DragMove();
     }
     #endregion
     

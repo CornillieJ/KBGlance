@@ -12,6 +12,6 @@
         ShowInTaskbar="False"
         >
     <Grid>
-        <Image x:Name="imgLayer" Source="resources/layer_0.png"/>
+        <Image x:Name="imgLayer" Source="resources/splash.png"/>
     </Grid>
 </Window>
