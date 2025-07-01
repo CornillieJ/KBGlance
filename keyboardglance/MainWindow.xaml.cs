@@ -46,7 +46,7 @@ public partial class MainWindow : Window
 
     private Dictionary<Key, bool> _pressedKeys = new();
     private IKeyboardMouseEvents _globalHook;
-    private int _windowDelay = 100;
+    private int _windowDelay = 200;
     private int _currentDelay;
     private CancellationTokenSource _cancellationTokenSource = new();
 
@@ -138,6 +138,7 @@ public partial class MainWindow : Window
     {
         _cancellationTokenSource.Cancel();
 
+        _windowDelay = 100;
         var bitmapImage = new BitmapImage();
         bitmapImage.BeginInit();
         bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
