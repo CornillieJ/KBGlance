@@ -23,6 +23,7 @@
 2. **Prepare the Keymap Images**
 
    - Navigate to the `Resources` folder within the extracted directory.
+   - It is now possible to change the images using the buit-in image manager, however the following method still works as well
    - Add your keymap images to this folder, ensuring they are named according to the following convention:
      ```
      layer_0.png
