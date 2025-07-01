@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="keyboardglance.Controls.ImageButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:keyboardglance.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="500">
+    <Grid>
+        <Button x:Name="ButtonControl"
+                Width="500"
+                Height="500"
+                Background="Transparent"
+                BorderThickness="0"
+                Cursor="Hand"
+                Click="ImageButton_Click"
+                Margin="5">
+            <Image x:Name="ImageControl"
+                   Source="path/to/your/image.png"
+                   Stretch="Uniform" />
+        </Button>
+        <Label x:Name="LabelControl" Foreground="white" HorizontalAlignment="Left" VerticalAlignment="Top"></Label>
+    </Grid>
+</UserControl>
