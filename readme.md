@@ -93,8 +93,13 @@
 - The app will automatically detect the right combo and change the displayed image to reflect the keymap for the active layer.
 
 ## **Future Enhancements**
-- **Image Uploading:**
-  -I would like to streamline the image process and then work on an easy-to-use image uploading feature that will automatically rename and place images in the correct directory.
+- **Cross platform:**
+  - I would like to make this application cross platform for Linux and Mac. But this will need a rewrite.
+- ### **UX**
+  - **Improve trigger:** 
+    - I would like to find a way to improve triggering the image, taking away the need for the user to add a custom combo, or making the experience easier. Perhaps allowing users to upload the keymap and getting back the updated keymap with combos added.
+  - **Create images:**
+    - I would like a way for users to create or detect the keymaps on the app instead of having to upload screenshots for each layer. 
 
 ## **Contributing**
 
